@@ -6,7 +6,7 @@
     
   </nav>
 
-  <h1 style="color: white;">Welcome user</h1>
+  <h1 style="color: white;">Welcome {{user}}</h1>
   
   
   <div class="container col-md-12 mt-0">
@@ -17,28 +17,43 @@
                   
               </div>
               <div class="card-body">
-                  <form (ngSubmit)="deposit()">
+                  <form [formGroup]="depositForm" (ngSubmit)="deposit()">
                  
                       <div class="input-group form-group">
                           <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-user"></i></span>
                           </div>
-                          <input type="text" class="form-control" name="acno" [(ngModel)]="acno" placeholder="accno" id="login_accno" required>
+                          <input type="text" class="form-control" name="acno" formControlName="acno" placeholder="accno" id="login_accno" required>
                           
                       </div>
+
+                      <div style="color: red;" *ngIf="this.depositForm.get('acno')?.touched&&this.depositForm.get('acno')?.errors">invalid accountnumber</div>
+
+
+
                       <div class="input-group form-group">
                           <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-key"></i></span>
                           </div>
-                          <input type="password" class="form-control" name="pswd" [(ngModel)]="pswd" placeholder="password" id="login_password" required>
+                          <input type="password" class="form-control" name="pswd" formControlName="pswd" placeholder="password" id="login_password" required>
                       </div>
+
+                      <div style="color: red;" *ngIf="this.depositForm.get('pswd')?.touched&&this.depositForm.get('pswd')?.errors">invalid password</div>
+
+
+
                       <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="amount" [(ngModel)]="amount" placeholder="Amount" id="login_user" required>
+                        <input type="text" class="form-control" name="amount" formControlName="amount" placeholder="Amount" id="login_user" required>
                         
                     </div>
+
+                    <div style="color: red;" *ngIf="this.depositForm.get('amount')?.touched&&this.depositForm.get('amount')?.errors">invalid accountnumber</div>
+
+
+
                       
                       <div class="form-group">
                           <input type="submit" value="Deposit"  class="btn float-right login_btn " style="width:50%" >
@@ -60,28 +75,42 @@
                 
             </div>
             <div class="card-body">
-                <form (ngSubmit)="withdraw()">
+                <form [formGroup]="withdrawForm" (ngSubmit)="withdraw()">
                
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="acno" [(ngModel)]="acno1" placeholder="accno" id="login_accno1" required>
+                        <input type="text" class="form-control" name="acno" formControlName="acno" placeholder="accno" id="login_accno1" required>
                         
                     </div>
+
+                    <div style="color: red;" *ngIf="this.withdrawForm.get('acno')?.touched&&this.withdrawForm.get('acno')?.errors">invalid accountnumber</div>
+
+
+
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password" class="form-control" name="pswd" [(ngModel)]="pswd1" placeholder="password" id="login_password1" required>
+                        <input type="password" class="form-control" name="pswd" formControlName="pswd" placeholder="password" id="login_password1" required>
                     </div>
+
+                    <div style="color: red;" *ngIf="this.withdrawForm.get('pswd')?.touched&&this.withdrawForm.get('pswd')?.errors">invalid accountnumber</div>
+
+
+
                     <div class="input-group form-group">
                       <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-user"></i></span>
                       </div>
-                      <input type="text" class="form-control" name="amount" [(ngModel)]="amount1" placeholder="Amount" id="login_user1" required>
+                      <input type="text" class="form-control" name="amount" formControlName="amount" placeholder="Amount" id="login_user1" required>
                       
                   </div>
+
+                  <div style="color: red;" *ngIf="this.withdrawForm.get('amount')?.touched&&this.withdrawForm.get('amount')?.errors">invalid accountnumber</div>
+
+
                     
                     <div class="form-group">
                         <input type="submit" value="withdraw"  class="btn float-right login_btn " style="width:50%" >

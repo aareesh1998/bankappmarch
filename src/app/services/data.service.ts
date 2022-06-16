@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DataService {
+  currentUser:any
     // database
     db:any = {
       1000:{"acno":1000,"username":"Neer","password":1000,"balance":5000},
@@ -14,11 +15,28 @@ export class DataService {
 
   constructor() { }
 
+// saveDetails()
+saveDetails(){
+  if(this.db){
+    localStorage.setItem("database",JSON.stringify(this.db))
+  }
+  if(this.currentUser){
+    localStorage.setItem("currentUser",JSON.stringify(this.currentUser))
+  }
+}
+
+
+
+  // login
+
   login(acno:any,pswd:any){
 
     let db = this.db
     if(acno in db){
       if(pswd==db[acno]["password"]){
+        
+        this.currentUser=db[acno]["username"]
+        this.saveDetails()
         return true
 
 
@@ -49,6 +67,8 @@ else{
     "balance":0
 
   }
+  this.saveDetails()
+
   return true
 }
 }
@@ -63,6 +83,8 @@ deposit(acno:any,password:any,amt:any){
 
     if(password== db[acno]["password"]){
       db[acno]["balance"]+=amount
+      this.saveDetails()
+
       return db[acno]["balance"]
 
     }
@@ -92,6 +114,8 @@ withdraw(acno:any,password:any,amt:any){
     if(password== db[acno]["password"]){
       if(db[acno]["balance"]>amount){
         db[acno]["balance"]-=amount
+        this.saveDetails()
+
         return db[acno]["balance"]
 
       }
