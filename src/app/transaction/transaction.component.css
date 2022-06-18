@@ -1,0 +1,7 @@
+table,tr,th{
+    border: 2px black solid;
+    padding: 40px;
+    margin-left: 40%;
+    margin-right: auto;
+    color: rgb(226, 24, 24);
+}
