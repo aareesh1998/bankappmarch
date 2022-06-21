@@ -7,16 +7,27 @@
   </nav>
 
   <h1 style="color: white;">Welcome {{user}}</h1>
+
+  <button class="btn btn-warning" style="float:right;margin-right: 30px;" (click)="logout()">Log out</button>
+
+
+  <h3 style="color: white;">{{lDate|date:'short'}}</h3>
   
   <a style="color: white;" routerLink="/transaction">Transaction historty</a>
-  <button class="btn btn-warning" style="float:right;margin-right: 30px;" (click)="logout()">Log out</button>
+
+  <button class="btn btn-danger" style="float:right;margin-right: 30px;" (click)="deleteAccount()">Delete</button>
+
+  <br><br>
+  <app-deleteconfirm (onCancel)="cancel()" [item]="acno"></app-deleteconfirm>
+  <!-- <app-animation-demo></app-animation-demo> -->
+
   <hr>
   
-  <div class="container col-md-12 mt-0">
+  <div [ngClass]="acno?'c1':'' " class="container col-md-12 mt-0">
       <div class="d-flex justify-content-center h-100">
           <div class="card">
               <div class="card-header">
-                  <h3 class="text-center">depositform</h3>
+                  <h3 appHighlight class="text-center">depositform</h3>
                   
               </div>
               <div class="card-body">
@@ -70,11 +81,11 @@
 
   <!-- withdraw -->
 
-  <div class="container col-md-12 mt-0">
+  <div [ngClass]="acno?'c1':'' " class="container col-md-12 mt-0">
     <div class="d-flex justify-content-center h-100">
         <div class="card">
             <div class="card-header">
-                <h3 class="text-center">withdraw form</h3>
+                <h3 appHighlight class="text-center">withdraw form</h3>
                 
             </div>
             <div class="card-body">

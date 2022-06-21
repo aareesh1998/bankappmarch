@@ -9,12 +9,12 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  acno=""
-  pswd=""
-  amount=""
-  acno1=""
-  pswd1=""
-  amount1=""
+  // acno=""
+  // pswd=""
+  // amount=""
+  // acno1=""
+  // pswd1=""
+  // amount1=""
 //form group
   depositForm=this.fb.group({
     acno:['',[Validators.required,Validators.pattern('[0-9]*')]],
@@ -30,9 +30,13 @@ export class DashboardComponent implements OnInit {
   })
 
 user:any
+lDate:any
+acno=""
+
 
   constructor(private ds:DataService,private fb:FormBuilder,private router:Router) {
     this.user= this.ds.currentUser
+    this.lDate=new Date()
    }
 
   ngOnInit(): void {
@@ -86,5 +90,16 @@ withdraw(){
     localStorage.removeItem("currentAcno")
 this.router.navigateByUrl("")
   }
+
+
+
+  deleteAccount(){
+this.acno=JSON.parse(localStorage.getItem("currentAcno")||'')
+  }
+
+  cancel(){
+    this.acno=""
+  }
+
 
 }
